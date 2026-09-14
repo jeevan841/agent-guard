@@ -61,4 +61,4 @@ HEALTHCHECK \
     }).on('error', () => process.exit(1));"
 
 # Production entrypoint — NOT nodemon
-CMD ["node", "src/index.js"]
+CMD ["sh", "-c", "npx prisma migrate deploy && node src/index.js"]
