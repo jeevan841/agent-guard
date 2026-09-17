@@ -145,7 +145,9 @@ router.post('/resend-verification', async (req, res, next) => {
       data: { email_verify_token: verifyToken, email_verify_expires: verifyExpires },
     });
 
-    sendVerificationEmail(email, user.name, verifyToken).catch(() => {});
+    sendVerificationEmail(email, user.name, verifyToken).catch((err) =>
+  console.warn('[Email] Resend verification failed:', err.message)
+);
     res.json({ message: 'Verification email resent.' });
   } catch (err) {
     next(err);
